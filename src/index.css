@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* 🎨 YOUR EXACT COLOR PALETTE */
+  --color-bg: #c7b690;           /* Warm beige background */
+  --color-surface: rgba(255,255,255,0.95); /* Card background */
+  --color-card: #FFFFFF;
+  --color-border: #D1D1D6;       /* Cool gray borders */
+  
+  --color-primary: #A4161A;      /* Deep red - primary brand */
+  --color-primary-dark: #660708; /* Darker red for depth */
+  --color-accent: #D97706;       /* Warm orange for highlights */
+  
+  --color-text: #1D1D1F;         /* Main text (near-black) */
+  --color-text-secondary: #3a3a3c; /* Body text */
+  --color-text-muted: #8e8e93;   /* Meta/caption text */
+  
+  --color-soft: rgba(164,22,26,0.08); /* Subtle red tint for backgrounds */
+
+  /* Shadows - subtle, professional */
+  --shadow-soft: 0 24px 80px rgba(29,29,31,0.12);
+  --shadow-light: 0 16px 40px rgba(29,29,31,0.08);
+  --shadow-focus: 0 0 0 3px rgba(164,22,26,0.15);
+
+  /* Animations */
+  --animate-fade-up: fadeInUp 0.6s ease-out both;
+  --animate-fade: fadeIn 0.5s ease-out both;
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Prevent navbar overlap on anchor links */
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Typography scale */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+  h2 { font-size: clamp(2rem, 4vw, 3rem); }
+  h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+  p {
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(164,22,26,0.2);
+    color: var(--color-text);
+  }
+
+  /* Scrollbar - branded, subtle */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
+    opacity: 1;
+  }
+
+  /* Focus visibility - accessible */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* Links */
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  a:hover {
+    color: var(--color-primary-dark);
+  }
+}
+
+@layer components {
+  /* Glass morphism - subtle, performant */
+  .glass {
+    background: var(--color-surface);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-light);
+  }
+
+  .glass-strong {
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(209,209,214,0.6);
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* Buttons - consistent, accessible */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: white;
+    box-shadow: 0 4px 14px rgba(164,22,26,0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(164,22,26,0.4);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-secondary {
+    background: var(--color-card);
+    color: var(--color-text);
+    border: 2px solid var(--color-border);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-primary);
+    background: rgba(255,255,255,0.9);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid transparent;
+  }
+  .btn-ghost:hover {
+    background: var(--color-soft);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--color-card);
+    border: 2px solid var(--color-border);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-light);
+  }
+
+  .card-compact {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  /* Section utilities */
+  .section {
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .section {
+      padding: 7rem 3rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section {
+      padding: 9rem 4rem;
+    }
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+  .section-header h2 {
+    margin-bottom: 0.75rem;
+  }
+  .section-header p {
+    color: var(--color-text-muted);
+    max-width: 48rem;
+  }
+
+  /* Badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.875rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 999px;
+    background: var(--color-soft);
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+  }
+
+  
+
+  /* Utility: hide on mobile/desktop */
+  .hide-mobile { display: none; }
+  @media (min-width: 768px) {
+    .hide-mobile { display: block; }
+    .hide-desktop { display: none; }
+  }
+}
+
+/* 🎯 Custom utilities for your palette */
+@utility text-primary {
+  color: var(--color-primary);
+}
+@utility text-secondary {
+  color: var(--color-text-secondary);
+}
+@utility text-muted {
+  color: var(--color-text-muted);
+}
+@utility bg-surface {
+  background: var(--color-surface);
+}
+@utility border-default {
+  border-color: var(--color-border);
+}
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+@theme {
+  /* ... your existing fonts and colors ... */
+
+  /* 🎯 PROFESSIONAL SECTION SPACING SYSTEM */
+  /* Base gap between sections - responsive via CSS clamp */
+  --section-gap: clamp(4rem, 8vw, 7rem); /* 64px - 112px - 112px */
+  
+  /* Specific overrides for visual rhythm */
+  --section-gap-hero-about: clamp(5rem, 10vw, 9rem);   /* Larger: Hero → About */
+  --section-gap-about-skills: clamp(4rem, 7vw, 6rem);   /* Medium: About → Skills */
+  --section-gap-skills-projects: clamp(4.5rem, 8vw, 7rem); /* Medium-large: Skills → Projects */
+  --section-gap-projects-contact: clamp(4rem, 7vw, 6rem); /* Medium: Projects → Contact */
+  --section-gap-contact-footer: clamp(3rem, 5vw, 5rem);   /* Smaller: Contact → Footer */
+
+  /* Section padding (internal spacing) */
+  --section-padding-y: clamp(3rem, 6vw, 5rem);  /* 48px - 96px - 80px */
+  --section-padding-x: clamp(1.5rem, 4vw, 3rem); /* 24px - 64px - 48px */
+
+  /* ... rest of your theme ... */
+}
