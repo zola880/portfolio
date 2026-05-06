@@ -2,32 +2,32 @@
 @import "tailwindcss";
 
 @theme {
-  /* Fonts */
+  /* ── Fonts ───────────────────────────────────────────────────────────── */
   --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  /* 🎨 YOUR EXACT COLOR PALETTE */
-  --color-bg: #c7b690;           /* Warm beige background */
-  --color-surface: rgba(255,255,255,0.95); /* Card background */
-  --color-card: #FFFFFF;
-  --color-border: #D1D1D6;       /* Cool gray borders */
+  /* ── 🎨 Your Exact Color Palette ─────────────────────────────────────── */
+  --color-bg: #c7b690;                    /* Warm beige background */
+  --color-surface: rgba(255,255,255,0.95); /* Card/surface background */
+  --color-card: #FFFFFF;                   /* Pure white cards */
+  --color-border: #D1D1D6;                 /* Cool gray borders */
   
-  --color-primary: #A4161A;      /* Deep red - primary brand */
-  --color-primary-dark: #660708; /* Darker red for depth */
-  --color-accent: #D97706;       /* Warm orange for highlights */
+  --color-primary: #A4161A;                /* Deep red - primary brand */
+  --color-primary-dark: #660708;           /* Darker red for depth/hover */
+  --color-accent: #D97706;                 /* Warm orange for highlights */
   
-  --color-text: #1D1D1F;         /* Main text (near-black) */
-  --color-text-secondary: #3a3a3c; /* Body text */
-  --color-text-muted: #8e8e93;   /* Meta/caption text */
+  --color-text: #1D1D1F;                   /* Main text (near-black) */
+  --color-text-secondary: #3a3a3c;         /* Body/paragraph text */
+  --color-text-muted: #8e8e93;             /* Meta/caption text */
   
-  --color-soft: rgba(164,22,26,0.08); /* Subtle red tint for backgrounds */
+  --color-soft: rgba(164,22,26,0.08);      /* Subtle red tint for backgrounds */
 
-  /* Shadows - subtle, professional */
+  /* ── Shadows - Subtle & Professional ────────────────────────────────── */
   --shadow-soft: 0 24px 80px rgba(29,29,31,0.12);
   --shadow-light: 0 16px 40px rgba(29,29,31,0.08);
   --shadow-focus: 0 0 0 3px rgba(164,22,26,0.15);
 
-  /* Animations */
+  /* ── Animations ─────────────────────────────────────────────────────── */
   --animate-fade-up: fadeInUp 0.6s ease-out both;
   --animate-fade: fadeIn 0.5s ease-out both;
 
@@ -35,11 +35,25 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
   }
+
+  /* ── 🎯 Professional Section Spacing (Tighter, Connected) ───────────── */
+  /* Default gap between sections - responsive via clamp */
+  --section-gap: clamp(2rem, 4vw, 3rem);        /* 32px - 64px - 48px */
+  
+  /* Specific overrides for visual rhythm */
+  --section-gap-hero-about: clamp(2.5rem, 5vw, 4rem);   /* Hero → About */
+  --section-gap-about-skills: clamp(1.5rem, 3vw, 2.5rem); /* About → Skills */
+  --section-gap-skills-projects: clamp(2rem, 4vw, 3rem); /* Skills → Projects */
+  --section-gap-projects-contact: clamp(1.5rem, 3vw, 2.5rem); /* Projects → Contact */
+  --section-gap-contact-footer: clamp(1rem, 2vw, 2rem); /* Contact → Footer */
+
+  /* Section internal padding - reduced for tighter flow */
+  --section-padding-y: clamp(2rem, 4vw, 3.5rem);  /* 32px - 64px - 56px */
+  --section-padding-x: clamp(1rem, 3vw, 2rem);    /* 16px - 48px - 32px */
 }
 
 @layer base {
@@ -59,9 +73,7 @@
     line-height: 1.6;
   }
 
-  * {
-    box-sizing: border-box;
-  }
+  * { box-sizing: border-box; }
 
   /* Typography scale */
   h1, h2, h3, h4, h5, h6 {
@@ -70,7 +82,6 @@
     letter-spacing: -0.02em;
     color: var(--color-text);
   }
-
   h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
   h2 { font-size: clamp(2rem, 4vw, 3rem); }
   h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
@@ -87,13 +98,8 @@
   }
 
   /* Scrollbar - branded, subtle */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--color-bg);
-  }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--color-bg); }
   ::-webkit-scrollbar-thumb {
     background: var(--color-primary);
     border-radius: 4px;
@@ -117,9 +123,7 @@
     text-decoration: none;
     transition: color 0.2s;
   }
-  a:hover {
-    color: var(--color-primary-dark);
-  }
+  a:hover { color: var(--color-primary-dark); }
 }
 
 @layer components {
@@ -130,7 +134,6 @@
     border: 1px solid var(--color-border);
     box-shadow: var(--shadow-light);
   }
-
   .glass-strong {
     background: rgba(255,255,255,0.98);
     backdrop-filter: blur(20px);
@@ -152,7 +155,6 @@
     cursor: pointer;
     text-decoration: none;
   }
-
   .btn-primary {
     background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
     color: white;
@@ -162,9 +164,7 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(164,22,26,0.4);
   }
-  .btn-primary:active {
-    transform: translateY(0);
-  }
+  .btn-primary:active { transform: translateY(0); }
   .btn-primary:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -186,9 +186,7 @@
     color: var(--color-primary);
     border: 2px solid transparent;
   }
-  .btn-ghost:hover {
-    background: var(--color-soft);
-  }
+  .btn-ghost:hover { background: var(--color-soft); }
 
   /* Cards */
   .card {
@@ -202,33 +200,26 @@
     border-color: var(--color-primary);
     box-shadow: var(--shadow-light);
   }
-
   .card-compact {
     padding: 1rem;
     border-radius: 1rem;
   }
 
-  /* Section utilities */
+  /* Section utilities - uses tighter spacing */
   .section {
-    padding: 5rem 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .section {
-      padding: 7rem 3rem;
-    }
-  }
-  @media (min-width: 1024px) {
-    .section {
-      padding: 9rem 4rem;
-    }
+    padding-block: var(--section-padding-y);
+    padding-inline: var(--section-padding-x);
+    width: 100%;
   }
 
-  .section-header {
-    margin-bottom: 3rem;
-  }
-  .section-header h2 {
-    margin-bottom: 0.75rem;
-  }
+  /* Section-specific gap overrides */
+  .section-about { margin-top: var(--section-gap-hero-about); }
+  .section-skills { margin-top: var(--section-gap-about-skills); }
+  .section-projects { margin-top: var(--section-gap-skills-projects); }
+  .section-contact { margin-top: var(--section-gap-projects-contact); }
+
+  .section-header { margin-bottom: 2.5rem; }
+  .section-header h2 { margin-bottom: 0.75rem; }
   .section-header p {
     color: var(--color-text-muted);
     max-width: 48rem;
@@ -248,8 +239,6 @@
     border: 1px solid var(--color-border);
   }
 
-  
-
   /* Utility: hide on mobile/desktop */
   .hide-mobile { display: none; }
   @media (min-width: 768px) {
@@ -259,41 +248,19 @@
 }
 
 /* 🎯 Custom utilities for your palette */
-@utility text-primary {
-  color: var(--color-primary);
-}
-@utility text-secondary {
-  color: var(--color-text-secondary);
-}
-@utility text-muted {
-  color: var(--color-text-muted);
-}
-@utility bg-surface {
-  background: var(--color-surface);
-}
-@utility border-default {
-  border-color: var(--color-border);
-}
-@utility shadow-soft {
-  box-shadow: var(--shadow-soft);
-}
-@theme {
-  /* ... your existing fonts and colors ... */
+@utility text-primary { color: var(--color-primary); }
+@utility text-secondary { color: var(--color-text-secondary); }
+@utility text-muted { color: var(--color-text-muted); }
+@utility bg-surface { background: var(--color-surface); }
+@utility border-default { border-color: var(--color-border); }
+@utility shadow-soft { box-shadow: var(--shadow-soft); }
 
-  /* 🎯 PROFESSIONAL SECTION SPACING SYSTEM */
-  /* Base gap between sections - responsive via CSS clamp */
-  --section-gap: clamp(4rem, 8vw, 7rem); /* 64px - 112px - 112px */
-  
-  /* Specific overrides for visual rhythm */
-  --section-gap-hero-about: clamp(5rem, 10vw, 9rem);   /* Larger: Hero → About */
-  --section-gap-about-skills: clamp(4rem, 7vw, 6rem);   /* Medium: About → Skills */
-  --section-gap-skills-projects: clamp(4.5rem, 8vw, 7rem); /* Medium-large: Skills → Projects */
-  --section-gap-projects-contact: clamp(4rem, 7vw, 6rem); /* Medium: Projects → Contact */
-  --section-gap-contact-footer: clamp(3rem, 5vw, 5rem);   /* Smaller: Contact → Footer */
-
-  /* Section padding (internal spacing) */
-  --section-padding-y: clamp(3rem, 6vw, 5rem);  /* 48px - 96px - 80px */
-  --section-padding-x: clamp(1.5rem, 4vw, 3rem); /* 24px - 64px - 48px */
-
-  /* ... rest of your theme ... */
+/* ── Reduced Motion Support ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

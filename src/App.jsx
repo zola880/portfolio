@@ -90,31 +90,30 @@ export default function App() {
         <Hero onNavigate={scrollToSection} />
 
         {/* 
-          🎯 PERFECT SECTION SPACING
-          Using CSS custom properties for consistent, responsive gaps
-          Values based on visual weight and content flow
+          🎯 TIGHTER SECTION SPACING
+          Reduced gaps for better visual flow while maintaining breathing room
         */}
-        <div className="flex flex-col" style={{ gap: 'var(--section-gap)' }}>
+        <div className="flex flex-col" style={{ gap: 'var(--section-gap-tight)' }}>
           
-          <Suspense fallback={<SectionSkeleton height="h-[60vh]" />}>
+          <Suspense fallback={<SectionSkeleton height="h-[50vh]" />}>
             <section id="about" className="section section-about">
               <About />
             </section>
           </Suspense>
 
-          <Suspense fallback={<SectionSkeleton height="h-[50vh]" />}>
+          <Suspense fallback={<SectionSkeleton height="h-[40vh]" />}>
             <section id="skills" className="section section-skills">
               <Skills />
             </section>
           </Suspense>
 
-          <Suspense fallback={<SectionSkeleton height="h-[50vh]" />}>
+          <Suspense fallback={<SectionSkeleton height="h-[40vh]" />}>
             <section id="projects" className="section section-projects">
               <Projects />
             </section>
           </Suspense>
 
-          <Suspense fallback={<SectionSkeleton height="h-[60vh]" />}>
+          <Suspense fallback={<SectionSkeleton height="h-[50vh]" />}>
             <section id="contact" className="section section-contact">
               <Contact />
             </section>

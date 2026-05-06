@@ -1,14 +1,13 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MessageCircle, MapPin, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-// ⚠️ REPLACE THESE WITH YOUR ACTUAL EMAILJS CREDENTIALS
-// Get them at: https://dashboard.emailjs.com/admin/account
+// EmailJS configuration
 const EMAILJS_CONFIG = {
-  SERVICE_ID: 'service_xxxxxxx',     // e.g., 'service_abc123'
-  TEMPLATE_ID: 'template_xxxxxxx',   // e.g., 'template_xyz789'
-  PUBLIC_KEY: 'user_xxxxxxx'         // e.g., 'user_abc123'
+  SERVICE_ID: 'service_vm86sxl',
+  TEMPLATE_ID: 'template_deenkxb',
+  PUBLIC_KEY: 'ZcYC71lOhUM3G9SEo'
 };
 
 export default function Contact() {
@@ -17,6 +16,11 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [messageType, setMessageType] = useState(''); // 'success' | 'error'
+
+  // Initialize EmailJS on component mount
+  useEffect(() => {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+  }, []);
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
