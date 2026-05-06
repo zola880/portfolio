@@ -294,9 +294,9 @@ export default function About() {
                 className="grid grid-cols-3 gap-4"
               >
                 {[
-                  { value: '3+', label: 'Years coding' },
+                  { value: '2+', label: 'Years coding' },
                   { value: '10+', label: 'Projects built' },
-                  { value: '5+', label: 'Certificates' },
+                  
                 ].map((stat) => (
                   <div
                     key={stat.label}
