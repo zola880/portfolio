@@ -43,12 +43,12 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="relative px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-red-50/50"
-                style={{ color: '#3a3a3c' }}
+                className="relative px-4 py-2 text-sm font-semibold transition-all rounded-lg hover:bg-red-100/60"
+                style={{ color: '#1D1D1F' }}
               >
                 {link.name}
                 <span 
-                  className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full opacity-0 transition-all duration-300"
+                  className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full opacity-0 hover:opacity-100 transition-all duration-300"
                   style={{ backgroundColor: '#A4161A' }}
                 />
               </a>
