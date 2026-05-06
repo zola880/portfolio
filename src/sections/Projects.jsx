@@ -31,7 +31,7 @@ const PROJECTS = [
     title: 'Navigate Addis',
     description: 'Comprehensive transportation guide for newcomers to Addis Ababa. Features route planning, fare calculation, live maps, and multiple transport options. Helps users navigate the city efficiently with real-time information.',
     shortDesc: 'Transport navigation & route planner for Addis Ababa',
-    image: 'https://images.unsplash.com/photo-1488747807830-63789f68bb65?auto=format&fit=crop&q=80&w=800',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyCN2jAQmV7F_2O2qW0TzszuviPr7d-Ha-UA&s',
     tags: ['React', 'Maps API', 'Transportation', 'UI/UX'],
     liveDemo: '#',
     github: 'https://github.com/zola880/Navigate_addis',
