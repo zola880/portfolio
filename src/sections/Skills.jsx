@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Layout, Server, Database, GitBranch, Brain } from 'lucide-react';
+import { Layout, Server, Database, GitBranch, Brain, Smartphone } from 'lucide-react';
  
 const skillsData = [
   {
@@ -20,9 +20,17 @@ const skillsData = [
     tags: ['Runtime', 'Server-Side', 'Versatile', 'Architecture'],
   },
   {
+    category: 'Mobile',
+    icon: Smartphone,
+    number: '03',
+    color: '#5C2E2F',
+    skills: ['Flutter Basics', 'Dart Fundamentals', 'Responsive UI'],
+    tags: ['Cross-platform', 'Widgets', 'App Layout'],
+  },
+  {
     category: 'Database',
     icon: Database,
-    number: '03',
+    number: '04',
     color: '#5C2E2F',
     skills: ['MySQL', 'MongoDB'],
     tags: ['Relational', 'NoSQL'],
@@ -30,7 +38,7 @@ const skillsData = [
   {
     category: 'Tools & DevOps',
     icon: GitBranch,
-    number: '04',
+    number: '05',
     color: '#3D2020',
     skills: ['Git', 'GitHub'],
     tags: ['Version Control', 'Code Hosting'],
@@ -38,7 +46,7 @@ const skillsData = [
   {
     category: 'Emerging Tech',
     icon: Brain,
-    number: '05',
+    number: '06',
     color: '#A4161A',
     skills: ['Basics of Machine Learning', 'AI Integration'],
     tags: ['Basics & Concepts', 'Practical Apps'],
