@@ -92,7 +92,7 @@ export default function Contact() {
       icon: <MessageCircle className="w-5 h-5" />,
       label: 'Telegram',
       value: '@Z3lelaw',
-      href: 'https://t.me/Z3lelaw',
+      href: 'https://t.me/Z3lelaw?start=portfolio_inquiry',
       color: '#0088cc'
     },
     {
