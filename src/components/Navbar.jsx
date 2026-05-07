@@ -38,28 +38,31 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map((link, idx) => (
               <a
-                key={link.id}
+                key={link.name}
                 href={link.href}
-                className="px-4 py-2 text-sm font-bold rounded-lg transition-all duration-200"
-                style={{ 
-                  color: '#1D1D1F',
-                  backgroundColor: 'rgba(255,255,255,0.5)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#A4161A';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.5)';
-                  e.currentTarget.style.color = '#1D1D1F';
-                }}
+                className="relative px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-red-50/50"
+                style={{ color: '#3a3a3c' }}
               >
-                {link.label}
+                {link.name}
+                <span 
+                  className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full opacity-0 transition-all duration-300"
+                  style={{ backgroundColor: '#A4161A' }}
+                />
               </a>
             ))}
+            <a
+              href="#contact"
+              className="ml-4 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all hover:shadow-lg hover:-translate-y-0.5"
+              style={{ 
+                background: 'linear-gradient(135deg, #A4161A, #660708)',
+                boxShadow: '0 4px 12px rgba(164,22,26,0.25)'
+              }}
+            >
+              Let's Talk
+            </a>
           </div>
 
           {/* Mobile Button */}

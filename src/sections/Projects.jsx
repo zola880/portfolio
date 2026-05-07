@@ -17,6 +17,17 @@ const PROJECTS = [
   },
   {
     id: 2,
+    title: 'Ecommerce Store',
+    description: 'Modern, fully functional ecommerce platform built with React and Node.js. Features a complete product catalog with advanced filtering, secure checkout system, shopping cart management, and real-time inventory tracking. Includes user authentication, order management, and responsive design for seamless shopping across all devices.',
+    shortDesc: 'Full-featured ecommerce platform with secure checkout',
+    image: 'https://images.unsplash.com/photo-1460925895917-adf4e11526eb?auto=format&fit=crop&q=80&w=800',
+    tags: ['React', 'Node.js', 'Ecommerce', 'Payment'],
+    liveDemo: 'https://ecomerce-three-inky.vercel.app/',
+    github: 'https://github.com/zola880/Ecomerce',
+    year: 2025,
+  },
+  {
+    id: 3,
     title: 'Intern Finder AI',
     description: 'AI-powered platform connecting students with internship opportunities. Facilitates seamless communication between students, companies, and university staff. Features automated acceptance letter delivery and remote application processing.',
     shortDesc: 'AI platform connecting students with internships',
@@ -27,7 +38,7 @@ const PROJECTS = [
     year: 2024,
   },
   {
-    id: 3,
+    id: 4,
     title: 'Navigate Addis',
     description: 'Comprehensive transportation guide for newcomers to Addis Ababa. Features route planning, fare calculation, live maps, and multiple transport options. Helps users navigate the city efficiently with real-time information.',
     shortDesc: 'Transport navigation & route planner for Addis Ababa',
@@ -38,7 +49,7 @@ const PROJECTS = [
     year: 2025,
   },
   {
-    id: 4,
+    id: 5,
     title: 'Tena Health Advisor',
     description: 'AI-integrated health advisory platform for Ethiopians. Provides localized health advice, gym routines, and nutrition guidance tailored to Ethiopian lifestyle and dietary preferences. Acts as a personal health companion.',
     shortDesc: 'AI health advisor with Ethiopian-focused guidance',
@@ -46,17 +57,6 @@ const PROJECTS = [
     tags: ['AI', 'Health', 'React', 'Nutrition'],
     liveDemo: 'https://tena-rbej.vercel.app/',
     github: 'https://github.com/zola880/Tena',
-    year: 2025,
-  },
-  {
-    id: 5,
-    title: 'Social Connect Platform',
-    description: 'Full-featured social media platform with video sharing, real-time chat, and voice/video calling capabilities. Built for local community engagement with modern communication features.',
-    shortDesc: 'Social platform with video, chat & calling',
-    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800',
-    tags: ['React', 'WebRTC', 'Socket.io', 'Video'],
-    liveDemo: 'https://dating-platform-for-people-with-hiv-orcin.vercel.app/',
-    github: 'https://github.com/zola880',
     year: 2025,
   },
 ];
