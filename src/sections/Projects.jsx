@@ -55,7 +55,7 @@ const PROJECTS = [
     shortDesc: 'AI health advisor with Ethiopian-focused guidance',
     image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=800',
     tags: ['AI', 'Health', 'React', 'Nutrition'],
-    liveDemo: 'https://tena-rbej.vercel.app/',
+    liveDemo: '#',
     github: 'https://github.com/zola880/Tena',
     year: 2025,
   },
