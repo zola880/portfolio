@@ -23,6 +23,8 @@ function TiltCard({ children }) {
       onMouseMove={handleMouse}
       onMouseLeave={reset}
       style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 800 }}
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
       {children}
     </motion.div>
@@ -123,46 +125,95 @@ export default function Hero() {
         }
         .social-link:hover { border-color: #A4161A; color: #A4161A; transform: translateY(-3px); background: rgba(255,255,255,0.9); }
  
-        /* Photo frame */
+        /* ✨ Enhanced Photo Frame - Simple & Responsive */
         .photo-frame {
-          position: relative; border-radius: 2px;
-          box-shadow: 0 32px 64px -12px rgba(29,29,31,0.25), 0 0 0 1px rgba(29,29,31,0.08);
+          position: relative;
+          border-radius: 16px; /* Rounded corners */
+          overflow: hidden;
+          box-shadow: 
+            0 20px 40px -8px rgba(29,29,31,0.2),
+            0 0 0 1px rgba(29,29,31,0.08);
+          background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(245,240,230,0.95));
         }
-        .photo-frame::after {
+        .photo-frame::before {
+          /* Subtle animated border glow - simple pulse */
           content: '';
-          position: absolute; inset: -1px;
-          border-radius: 2px;
-          background: linear-gradient(145deg, rgba(255,255,255,0.5) 0%, transparent 50%, rgba(164,22,26,0.15) 100%);
+          position: absolute;
+          inset: -1px;
+          border-radius: 17px;
+          background: linear-gradient(135deg, transparent, rgba(164,22,26,0.3), transparent);
+          animation: border-glow 3s ease-in-out infinite;
           pointer-events: none;
+          opacity: 0.6;
+        }
+        @keyframes border-glow {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
+        }
+        .photo-image {
+          width: 100%;
+          display: block;
+          aspect-ratio: 3/4;
+          object-fit: cover;
+          object-position: center top;
+          border-radius: 16px; /* Match frame */
+          transition: transform 0.3s ease;
+        }
+        .photo-frame:hover .photo-image {
+          transform: scale(1.03);
+        }
+ 
+        /* ✨ Corner Badge - Simple */
+        .corner-badge {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          z-index: 2;
+          padding: 5px 12px;
+          background: rgba(255,255,255,0.95);
+          border: 1px solid rgba(164,22,26,0.2);
+          border-radius: 100px;
+          font-family: 'Outfit', sans-serif;
+          font-size: 9px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #A4161A;
         }
  
         /* Floating stat cards */
         .stat-float {
           position: absolute;
-          background: rgba(255,255,255,0.92);
-          backdrop-filter: blur(12px);
+          background: rgba(255,255,255,0.95);
+          backdrop-filter: blur(8px);
           border: 1px solid rgba(255,255,255,0.9);
-          box-shadow: 0 8px 32px rgba(29,29,31,0.12);
-          border-radius: 6px; padding: 10px 16px;
+          box-shadow: 0 6px 20px rgba(29,29,31,0.1);
+          border-radius: 8px;
+          padding: 8px 14px;
+          z-index: 2;
         }
  
         @keyframes float-y {
           0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
+          50% { transform: translateY(-6px); }
         }
         .float-anim { animation: float-y 4s ease-in-out infinite; }
         .float-anim-delay { animation: float-y 4s ease-in-out 1.5s infinite; }
  
-        /* Number counter style */
         .stat-num {
           font-family: 'Libre Baskerville', serif;
-          font-weight: 700; font-size: 1.3rem; line-height: 1;
+          font-weight: 700;
+          font-size: 1.2rem;
+          line-height: 1;
           color: #1D1D1F;
         }
         .stat-label {
           font-family: 'Outfit', sans-serif;
-          font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-          color: #8e8e93; margin-top: 2px;
+          font-size: 9px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #8e8e93;
+          margin-top: 2px;
         }
       `}</style>
  
@@ -318,7 +369,7 @@ export default function Hero() {
               </motion.div>
             </motion.div>
  
-            {/* ── RIGHT — Photo ── */}
+            {/* ── RIGHT — Responsive Photo ── */}
             <motion.div
               className="relative flex justify-center lg:justify-end"
               initial={{ opacity: 0, y: 30 }}
@@ -326,14 +377,14 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
               {/* Offset grid ornament */}
-              <div className="absolute pointer-events-none"
+              <div className="absolute pointer-events-none hidden md:block"
                    style={{
                      top: '-20px', left: '4%',
                      width: '120px', height: '120px',
                      backgroundImage: 'radial-gradient(circle, rgba(164,22,26,0.35) 1.5px, transparent 0)',
                      backgroundSize: '14px 14px',
                    }} />
-              <div className="absolute pointer-events-none"
+              <div className="absolute pointer-events-none hidden md:block"
                    style={{
                      bottom: '-16px', right: '6%',
                      width: '90px', height: '90px',
@@ -341,24 +392,30 @@ export default function Hero() {
                      backgroundSize: '12px 12px',
                    }} />
  
-              <div className="relative" style={{ width: 'min(380px, 100%)' }}>
+              <div className="relative" style={{ width: 'min(280px, 90vw)' }}> {/* Smaller on mobile */}
                 <TiltCard>
                   <div className="photo-frame">
+                    {/* ✨ Corner Badge */}
+                    <div className="corner-badge">CS Student</div>
+                    
                     {/* Red accent bar at top */}
-                    <div style={{ height: '4px', background: 'linear-gradient(90deg, #A4161A, #660708)', borderRadius: '2px 2px 0 0' }} />
+                    <div style={{ height: '3px', background: 'linear-gradient(90deg, #A4161A, #660708)' }} />
+                    
+                    {/* Image with rounded corners */}
                     <img
                       src={profileImg}
-                      alt="Zelalem Ybabe"
-                      className="w-full block"
-                      style={{ display: 'block', borderRadius: '0 0 2px 2px', aspectRatio: '3/4', objectFit: 'cover' }}
+                      alt="Zelalem Ybabe — Computer Science Student"
+                      className="photo-image"
+                      loading="eager"
+                      decoding="async"
                     />
                   </div>
                 </TiltCard>
  
-                {/* Floating stat — top right */}
+                {/* Floating stat — top right (hidden on mobile) */}
                 <motion.div
-                  className="stat-float float-anim"
-                  style={{ top: '18px', right: '-20px' }}
+                  className="stat-float float-anim hidden md:block"
+                  style={{ top: '12px', right: '-15px' }}
                   initial={{ opacity: 0, x: 16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.6, duration: 0.5 }}
@@ -367,10 +424,10 @@ export default function Hero() {
                   <div className="stat-label">Projects</div>
                 </motion.div>
  
-                {/* Floating stat — bottom left */}
+                {/* Floating stat — bottom left (hidden on mobile) */}
                 <motion.div
-                  className="stat-float float-anim-delay"
-                  style={{ bottom: '24px', left: '-20px' }}
+                  className="stat-float float-anim-delay hidden md:block"
+                  style={{ bottom: '18px', left: '-15px' }}
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.75, duration: 0.5 }}
@@ -382,22 +439,22 @@ export default function Hero() {
                       <span className="relative inline-flex rounded-full h-1.5 w-1.5"
                             style={{ backgroundColor: '#10B981' }} />
                     </span>
-                    <span className="stat-num" style={{ fontSize: '0.85rem' }}>Open</span>
+                    <span className="stat-num" style={{ fontSize: '0.8rem' }}>Open</span>
                   </div>
                   <div className="stat-label">Freelance</div>
                 </motion.div>
  
-                {/* Floating tag — bottom right */}
+                {/* Floating tag — bottom right (simplified for mobile) */}
                 <motion.div
                   className="stat-float"
-                  style={{ bottom: '-12px', right: '14px' }}
+                  style={{ bottom: '-10px', right: '10px' }}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9, duration: 0.5 }}
                 >
-                  <div className="flex items-center gap-1.5">
-                    <span style={{ fontFamily: "'Libre Baskerville', serif", fontSize: '0.7rem', color: '#A4161A', fontStyle: 'italic' }}>&lt;/&gt;</span>
-                    <span className="stat-label" style={{ marginTop: 0, color: '#1D1D1F', fontSize: '11px', fontWeight: 500 }}>Full Stack Dev</span>
+                  <div className="flex items-center gap-1">
+                    <span style={{ fontFamily: "'Libre Baskerville', serif", fontSize: '0.65rem', color: '#A4161A', fontStyle: 'italic' }}>&lt;/&gt;</span>
+                    <span className="stat-label" style={{ marginTop: 0, color: '#1D1D1F', fontSize: '10px', fontWeight: 500 }}>Full Stack</span>
                   </div>
                 </motion.div>
               </div>
