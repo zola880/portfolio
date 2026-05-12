@@ -98,7 +98,7 @@ export default function Contact() {
     {
       icon: <MapPin className="w-5 h-5" />,
       label: 'Location',
-      value: 'Bahir Dar, Ethiopia',
+      value: 'Addis Ababa, Ethiopia',
       href: null,
       color: '#D97706'
     }
