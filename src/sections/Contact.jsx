@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MessageCircle, MapPin, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-// EmailJS configuration
+// EmailJS configuration – replace with your own keys if needed
 const EMAILJS_CONFIG = {
   SERVICE_ID: 'service_vm86sxl',
   TEMPLATE_ID: 'template_deenkxb',
@@ -11,13 +11,12 @@ const EMAILJS_CONFIG = {
 };
 
 export default function Contact() {
-  const formRef = useRef();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const [messageType, setMessageType] = useState(''); // 'success' | 'error'
 
-  // Initialize EmailJS on component mount
+  // Initialize EmailJS once when component mounts
   useEffect(() => {
     emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
   }, []);
@@ -33,7 +32,7 @@ export default function Contact() {
     setMessageType('');
 
     try {
-      // Validate form
+      // Basic validation
       if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
         throw new Error('Please fill in all fields');
       }
@@ -46,7 +45,7 @@ export default function Contact() {
           from_name: formData.name.trim(),
           from_email: formData.email.trim(),
           message: formData.message.trim(),
-          to_email: 'zelalemybabe77@gmail.com',
+          to_email: 'zelalemybabe77@gmail.com',   // your email address
           reply_to: formData.email.trim()
         },
         EMAILJS_CONFIG.PUBLIC_KEY
@@ -55,17 +54,17 @@ export default function Contact() {
       if (result.status === 200) {
         setSubmitMessage('✅ Message sent! I\'ll reply within 24 hours.');
         setMessageType('success');
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', message: '' }); // clear form
       } else {
         throw new Error('Failed to send');
       }
     } catch (error) {
-      console.error('Email error:', error);
+      console.error('EmailJS error:', error);
       setSubmitMessage('⚠️ Couldn\'t send. Please email me directly at zelalemybabe77@gmail.com');
       setMessageType('error');
     } finally {
       setIsSubmitting(false);
-      // Auto-clear message after 8 seconds
+      // Auto-dismiss message after 8 seconds
       setTimeout(() => {
         setSubmitMessage('');
         setMessageType('');
@@ -214,7 +213,6 @@ export default function Contact() {
             viewport={{ once: true }}
           >
             <form 
-              ref={formRef}
               onSubmit={handleSubmit} 
               className="space-y-5 p-6 md:p-8 rounded-2xl border-2"
               style={{ 
